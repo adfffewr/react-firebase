@@ -47,7 +47,7 @@ const AuthForm = ({ type, form, onChange }) => {
   return (
     <>
       <AuthFormBlock>
-        <h3>{text}</h3>
+        <h3>{text}11</h3>
         <form>
           <StyledInput name="email" placeholder="아이디" onChange={onChange} value={form.email} />
           <StyledInput name="password" placeholder="비밀번호" type="password" onChange={onChange} value={form.password} />
