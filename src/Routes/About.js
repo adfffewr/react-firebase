@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import Header from '../Components/common/header';
 
 const About = () => {
-  return <div>About</div>;
+  return (
+    <Suspense fallback={<Header />}>
+      <Header />
+      <main>dsfdsfsdf</main>
+    </Suspense>
+  );
 };
 
 export default About;

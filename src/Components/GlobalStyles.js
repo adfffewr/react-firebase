@@ -24,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
   a{
     text-decoration:none;
   }
-  
+
   @media screen and (min-width:768px) {
     body {
       font-size: 18px;  
