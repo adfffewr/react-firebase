@@ -14,9 +14,21 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.65;
     font-family: 'NanumBarunGothic', sans-serif;
   }
+  main {
+    max-width:700px;
+    width:100%;
+    margin:0 auto;
+    padding:1.5rem;
+    box-sizing:border-box;
+  }
+  a{
+    text-decoration:none;
+  }
   
   @media screen and (min-width:768px) {
-    font-size: 18px;
+    body {
+      font-size: 18px;  
+    }
   }
 `;
 

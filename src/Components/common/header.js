@@ -4,11 +4,15 @@ import styled from 'styled-components';
 
 const HeaderBox = styled.header`
   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
   a {
-    text-decoration: none;
+    font-size: 0.9rem;
   }
   @media screen and (min-width: 768px) {
-    padding: 2em 4em 4em;
+    padding: 2rem 4rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 `;
 const NavBox = styled.nav`
@@ -47,7 +51,7 @@ const Header = () => {
               <LinkTag to="/">Home</LinkTag>
             </li>
             <li>
-              <LinkTag to="/about">about</LinkTag>
+              <LinkTag to="/about">About</LinkTag>
             </li>
           </NavListBox>
         </NavBox>

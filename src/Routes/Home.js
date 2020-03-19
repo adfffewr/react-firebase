@@ -1,12 +1,13 @@
 import React, { Suspense, lazy } from 'react';
 
-const HomeLayout = lazy(() => import('../Layout/HomeLayout'));
+const HomeLayout = lazy(() => import('../Containers/HomeContainer'));
 
 const Home = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <HomeLayout></HomeLayout>
-      <div>Home</div>
+      <main>
+        <HomeLayout></HomeLayout>
+      </main>
     </Suspense>
   );
 };
