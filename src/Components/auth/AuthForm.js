@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-// import Button from '../common/Button';
+import Button from '../common/Button';
 
 const AuthFormBlock = styled.div`
   h3 {
@@ -22,9 +22,7 @@ const StyledInput = styled.input`
   padding: 10px 15px;
   box-sizing: border-box;
   font-size: 0.9rem;
-  & + input {
-    margin-top: 10px;
-  }
+  margin-bottom: 10px;
 `;
 
 const Footer = styled.div`
@@ -47,10 +45,22 @@ const AuthForm = ({ type, form, onChange }) => {
   return (
     <>
       <AuthFormBlock>
-        <h3>{text}11</h3>
+        {/* <h3>{text}</h3> */}
         <form>
-          <StyledInput name="email" placeholder="아이디" onChange={onChange} value={form.email} />
-          <StyledInput name="password" placeholder="비밀번호" type="password" onChange={onChange} value={form.password} />
+          <StyledInput
+            name="email"
+            placeholder="아이디"
+            onChange={onChange}
+            value={form.email}
+          />
+          <StyledInput
+            name="password"
+            placeholder="비밀번호"
+            type="password"
+            onChange={onChange}
+            value={form.password}
+          />
+          <Button full>{text}</Button>
         </form>
       </AuthFormBlock>
     </>
