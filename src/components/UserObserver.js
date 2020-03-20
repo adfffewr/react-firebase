@@ -10,13 +10,18 @@ const userState = async user => {
     const { photoURL, email } = user;
     const { user_id, level } = claims;
 
+    userStore.currentUser = { token, level, photoURL, email };
+
     userStore.token = token;
     userStore.level = level;
     userStore.photoURL = photoURL;
     userStore.email = email;
     // console.log(userStore.currentUser.token);
 
-    localStorage.setItem('__palette_user__', JSON.stringify({ user_id, level, token }));
+    localStorage.setItem(
+      '__palette_user__',
+      JSON.stringify({ user_id, level, token })
+    );
   } catch (e) {
     // console.log(e);
   }

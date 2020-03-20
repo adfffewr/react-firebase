@@ -1,9 +1,8 @@
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { palette } from '../GlobalStyles';
 import Button from './Button';
-import { auth } from '../../firebase/firebase';
 import { userStore } from '../../store';
 import { useObserver } from 'mobx-react';
 
@@ -45,15 +44,10 @@ const NavListBox = styled.ul`
   }
 `;
 
-const Header = ({ history }) => {
-  const logoutClick = async () => {
-    try {
-      await auth.signOut();
-      history.push('/');
-    } catch (e) {
-      console.log(e);
-    }
-  };
+const Header = () => {
+  const onLogout = useCallback(() => {
+    userStore.logOut();
+  }, []);
 
   return useObserver(() => (
     <>
@@ -70,9 +64,9 @@ const Header = ({ history }) => {
               <LinkTag to="/about">About</LinkTag>
             </li>
           </NavListBox>
-          {userStore.level === 0 && (
+          {userStore.currentUser && userStore.currentUser.level === 0 && (
             <div>
-              <Button onClick={logoutClick}>로그아웃</Button>
+              <Button onClick={onLogout}>로그아웃</Button>
             </div>
           )}
         </NavBox>
@@ -81,4 +75,4 @@ const Header = ({ history }) => {
   ));
 };
 
-export default withRouter(Header);
+export default Header;

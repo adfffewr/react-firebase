@@ -1,12 +1,10 @@
+import { auth } from '../firebase/firebase';
+
 const { observable } = require('mobx');
 
 const userStore = observable({
   isLoggingIn: false,
   currentUser: null,
-  token: null,
-  level: null,
-  photoURL: null,
-  email: null
 
   // logIn(data) {
   //   this.isLoggingIn = true;
@@ -16,9 +14,18 @@ const userStore = observable({
   //     postStore.data.push(1);
   //   }, 2000);
   // },
-  // logOut() {
-  //   this.data = null;
-  // }
+  logOut() {
+    // this.data = null;
+    const logoutClick = async () => {
+      try {
+        await auth.signOut();
+        this.currentUser = null;
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    logoutClick();
+  }
 });
 
 export default userStore;

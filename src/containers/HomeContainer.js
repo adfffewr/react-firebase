@@ -31,15 +31,17 @@ const HomeContainer = () => {
     }
   };
 
-  // useEffect(() => {
-  //   // console.log(firebase.firestore())
-  //   data();
-  // }, []);
+  useEffect(() => {
+    // console.log(firebase.firestore())
+    data();
+  }, []);
   // console.log(lists);
 
   return useObserver(() => (
     <Container>
-      {userStore.level === 0 && <LoggedIn />}
+      {userStore.currentUser && userStore.currentUser.level === 0 && (
+        <LoggedIn />
+      )}
       <h1>Home</h1>
       <ol>
         <PostList lists={lists} />

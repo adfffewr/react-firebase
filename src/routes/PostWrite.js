@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import Header from '../components/common/Header';
+import Header from '../components/common/header';
 
 const PostWrite = () => {
   return (
