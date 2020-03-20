@@ -47,19 +47,8 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
       <AuthFormBlock>
         {/* <h3>{text}</h3> */}
         <form onSubmit={onSubmit}>
-          <StyledInput
-            name="email"
-            placeholder="아이디"
-            onChange={onChange}
-            value={form.email}
-          />
-          <StyledInput
-            name="password"
-            placeholder="비밀번호"
-            type="password"
-            onChange={onChange}
-            value={form.password}
-          />
+          <StyledInput name="email" placeholder="아이디" onChange={onChange} value={form.email} />
+          <StyledInput name="password" placeholder="비밀번호" type="password" onChange={onChange} value={form.password} />
           <Button full>{text}</Button>
         </form>
       </AuthFormBlock>

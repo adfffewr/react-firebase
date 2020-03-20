@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
-import Header from '../Components/common/header';
-const HomeLayout = lazy(() => import('../Containers/HomeContainer'));
+import Header from '../components/common/Header';
+const HomeLayout = lazy(() => import('../containers/HomeContainer'));
 
 const Home = () => {
   return (

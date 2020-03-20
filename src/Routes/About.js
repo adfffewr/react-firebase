@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import Header from '../Components/common/header';
+import Header from '../components/common/Header';
 
 const About = () => {
   return (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { firestore } from '../firebase/firebase';
 
-import PostList from '../Components/home/PostList';
+import PostList from '../components/home/PostList';
 
 const Container = styled.div`
   display: block;
@@ -22,7 +22,7 @@ const HomeContainer = () => {
         .orderBy('createdAt', 'desc')
         .limit(20)
         .get();
-      console.log(res);
+      // console.log(res);
       setLists(res.docs.map(e => e.data()));
     } catch (e) {
       console.log(e);

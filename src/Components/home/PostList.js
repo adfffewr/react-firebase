@@ -31,7 +31,7 @@ const TextContent = styled.div`
 `;
 
 const PostList = ({ lists }) => {
-  console.log(lists);
+  // console.log(lists);
   return (
     <>
       {lists &&
