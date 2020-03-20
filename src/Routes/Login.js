@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import AuthContainer from '../containers/AuthContainer';
 import AuthForm from '../components/auth/AuthForm';
+import { userStore } from '../store';
 
 import { auth } from '../firebase/firebase';
 
@@ -30,12 +31,15 @@ const Login = ({ history }) => {
     [form]
   );
 
-  const onSubmit = async e => {
-    e.preventDefault();
-    const res = await auth.signInWithEmailAndPassword(form.email, form.password);
-    // console.log(res);
-    res && history.push('/');
-  };
+  const onSubmit = useCallback(
+    async e => {
+      e.preventDefault();
+      const res = await auth.signInWithEmailAndPassword(form.email, form.password);
+      // console.log(res);
+      res && history.push('/');
+    },
+    [form.email, form.password, history]
+  );
 
   // console.log(form);
 

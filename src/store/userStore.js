@@ -2,7 +2,12 @@ const { observable } = require('mobx');
 
 const userStore = observable({
   isLoggingIn: false,
-  currentUser: null
+  currentUser: null,
+  token: null,
+  level: null,
+  photoURL: null,
+  email: null
+
   // logIn(data) {
   //   this.isLoggingIn = true;
   //   setTimeout(() => {

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { firestore } from '../firebase/firebase';
-
+import { userStore } from '../store';
+import { useObserver } from 'mobx-react';
 import PostList from '../components/home/PostList';
+import LoggedIn from '../components/common/LoggedIn';
 
 const Container = styled.div`
   display: block;
@@ -29,20 +31,21 @@ const HomeContainer = () => {
     }
   };
 
-  useEffect(() => {
-    // console.log(firebase.firestore())
-    data();
-  }, []);
+  // useEffect(() => {
+  //   // console.log(firebase.firestore())
+  //   data();
+  // }, []);
   // console.log(lists);
 
-  return (
+  return useObserver(() => (
     <Container>
+      {userStore.level === 0 && <LoggedIn />}
       <h1>Home</h1>
       <ol>
         <PostList lists={lists} />
       </ol>
     </Container>
-  );
+  ));
 };
 
 export default HomeContainer;

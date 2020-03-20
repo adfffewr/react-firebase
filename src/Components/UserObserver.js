@@ -8,10 +8,14 @@ const userState = async user => {
     const token = await user.getIdToken();
     const { claims } = await user.getIdTokenResult();
     const { photoURL, email } = user;
-
-    userStore.currentUser = { token, claims, photoURL, email };
-    // console.log(userStore.currentUser.token);
     const { user_id, level } = claims;
+
+    userStore.token = token;
+    userStore.level = level;
+    userStore.photoURL = photoURL;
+    userStore.email = email;
+    // console.log(userStore.currentUser.token);
+
     localStorage.setItem('__palette_user__', JSON.stringify({ user_id, level, token }));
   } catch (e) {
     // console.log(e);

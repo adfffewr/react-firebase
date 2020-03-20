@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { palette } from '../GlobalStyles';
+import Button from './Button';
+import { auth } from '../../firebase/firebase';
+import { userStore } from '../../store';
+import { useObserver } from 'mobx-react';
 
 const HeaderBox = styled.header`
   padding: 20px;
@@ -33,14 +37,25 @@ const LinkTag = styled(Link)`
 `;
 const NavListBox = styled.ul`
   display: flex;
+  flex: 1;
   align-items: center;
+  justify-content: flex-end;
   li {
-    margin-left: 15px;
+    margin: 0 15px;
   }
 `;
 
-const Header = () => {
-  return (
+const Header = ({ history }) => {
+  const logoutClick = async () => {
+    try {
+      await auth.signOut();
+      history.push('/');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return useObserver(() => (
     <>
       <HeaderBox>
         <NavBox>
@@ -55,10 +70,15 @@ const Header = () => {
               <LinkTag to="/about">About</LinkTag>
             </li>
           </NavListBox>
+          {userStore.level === 0 && (
+            <div>
+              <Button onClick={logoutClick}>로그아웃</Button>
+            </div>
+          )}
         </NavBox>
       </HeaderBox>
     </>
-  );
+  ));
 };
 
-export default Header;
+export default withRouter(Header);
