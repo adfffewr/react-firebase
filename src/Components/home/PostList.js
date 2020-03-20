@@ -1,22 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { palette } from '../GlobalStyles';
 
 const List = styled.li`
   & + li {
     margin-top: 1.5rem;
   }
   a {
-    color: rgb(245, 247, 250);
+    color: ${palette.white};
   }
   a:hover {
-    color: #00bfa6;
+    color: ${palette.green};
   }
 `;
 const Date = styled.time`
   font-size: 0.8rem;
   font-weight: bold;
-  color: #00bfa6;
+  color: ${palette.green};
 `;
 const Title = styled.h2`
   font-size: 1.1rem;

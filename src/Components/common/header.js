@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { palette } from '../GlobalStyles';
 
 const HeaderBox = styled.header`
   padding: 20px;
@@ -21,13 +22,13 @@ const NavBox = styled.nav`
   justify-content: space-between;
 `;
 const Logo = styled(Link)`
-  color: rgb(245, 247, 250);
+  color: ${palette.white};
 `;
 const LinkTag = styled(Link)`
-  color: #00bfa6;
+  color: ${palette.green};
   transition: color 0.2s;
   &:hover {
-    color: rgb(245, 247, 250);
+    color: ${palette.white};
   }
 `;
 const NavListBox = styled.ul`

@@ -1,5 +1,5 @@
 import React from 'react';
-import GlobalStyles from './GlobalStyles';
+import { GlobalStyles } from './GlobalStyles';
 import Router from './Router';
 import UserObserver from './UserObserver';
 // import logo from './logo.svg';
