@@ -1,15 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { palette } from '../GlobalStyles';
 
 const buttonStyle = css`
   display: inline-block;
-  height: 32px;
-  padding: 4px 16px;
+  /* height: 32px; */
+  line-height: 1;
+  padding: 10px 20px;
   font-size: 14px;
   border-radius: 2px;
   background: #33363b;
-  color: rgb(245, 247, 250);
+  color: ${palette.white};
   border: none;
   outline: none;
   box-sizing: border-box;
@@ -33,7 +35,11 @@ const StyledLink = styled(Link)`
 `;
 
 const Button = props => {
-  return props.to ? <StyledLink {...props} cyan={props.cyan ? 1 : 0} /> : <StyledButton {...props} />;
+  return props.to ? (
+    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
+  ) : (
+    <StyledButton {...props} />
+  );
 };
 
 export default Button;

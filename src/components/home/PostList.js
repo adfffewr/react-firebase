@@ -24,12 +24,12 @@ const Title = styled.h2`
   font-weight: bold;
   margin: 5px 0;
 `;
-const TextContent = styled.div`
-  p {
-    font-size: 0.9rem;
-    font-weight: bold;
-  }
-`;
+// const TextContent = styled.div`
+//   p {
+//     font-size: 0.9rem;
+//     font-weight: bold;
+//   }
+// `;
 
 const PostList = ({ lists }) => {
   // console.log(lists);
@@ -42,9 +42,6 @@ const PostList = ({ lists }) => {
             <Link to={list.slug}>
               <Date datetime={list.date}>{list.date}</Date>
               <Title>{list.title}</Title>
-              <TextContent>
-                <p>{list.description}</p>
-              </TextContent>
             </Link>
           </List>
         ))}
