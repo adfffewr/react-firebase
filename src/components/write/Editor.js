@@ -109,28 +109,14 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = () => {
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [url, setUrl] = useState('');
-  const [description, setDescription] = useState('');
-
-  const onChangeTitle = useCallback(e => {
-    setTitle(e.target.value);
-  }, []);
-
-  const onChangeCategory = useCallback(e => {
-    setCategory(e.target.value);
-  }, []);
-
-  const onChangeUrl = useCallback(e => {
-    setUrl(e.target.value);
-  }, []);
-
-  const onChangeDescription = useCallback(e => {
-    setDescription(e.target.value);
-  }, []);
-
+const Editor = ({
+  form,
+  onChangeTitle,
+  onChangeCategory,
+  onChangeUrl,
+  onChangeDescription,
+  onChangeContent,
+}) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
 
@@ -155,18 +141,19 @@ const Editor = () => {
           [{ header: '1' }, { header: '2' }],
           ['bold', 'italic', 'underline', 'strike'],
           [{ list: 'ordered' }, { list: 'bullet' }],
-          ['blockquote', 'code-block', 'link', 'image']
-        ]
-      }
+          ['blockquote', 'code-block', 'link', 'image'],
+        ],
+      },
     });
 
     // quill에 text-change 이벤트 핸들러 등록
     // 참고: https://quilljs.com/docs/api/#events
-    // const quill = quillInstance.current;
-    // quill.on('text-change', (delta, oldDelta, source) => {
-    //   console.log(quill.root.innerHTML);
-    // });
-  }, []);
+    const quill = quillInstance.current;
+    quill.on('text-change', (delta, oldDelta, source) => {
+      onChangeContent(quill.root.innerHTML);
+      // console.log(quill.root.innerHTML);
+    });
+  }, [onChangeContent]);
 
   return (
     <>
@@ -178,18 +165,18 @@ const Editor = () => {
             placeholder="제목을 입력하세요"
             full
             type="text"
-            value={title}
+            value={form.title}
             onChange={onChangeTitle}
           />
         </InputBox>
 
         <InputBox>
           <span>카테고리</span>
-          <Select full value={category} onChange={onChangeCategory}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
+          <Select full value={form.category} onChange={onChangeCategory}>
+            <option value="html">html</option>
+            <option value="css">css</option>
+            <option value="javascript">javascript</option>
+            <option value="react">react</option>
           </Select>
         </InputBox>
 
@@ -199,7 +186,7 @@ const Editor = () => {
             placeholder="url을 입력하세요"
             full
             type="text"
-            value={url}
+            value={form.url}
             onChange={onChangeUrl}
           />
         </InputBox>
@@ -209,7 +196,7 @@ const Editor = () => {
           <Textarea
             placeholder="포스트 소개를 짧게 작성해주세요"
             full
-            value={description}
+            value={form.description}
             onChange={onChangeDescription}
           />
         </InputBox>

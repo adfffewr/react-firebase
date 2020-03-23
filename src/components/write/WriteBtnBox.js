@@ -17,7 +17,7 @@ const WriteBtnBox = () => {
     <>
       <BtnContainer>
         <Button to="/">취소</Button>
-        <Button>작성</Button>
+        <Button type="submit">작성</Button>
       </BtnContainer>
     </>
   );
