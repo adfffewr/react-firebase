@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 // import hljs from 'highlight.js/lib/highlight';
@@ -8,6 +8,7 @@ import { palette } from '../GlobalStyles';
 import Input from '../common/Input';
 import Select from '../common/Select';
 import Textarea from '../common/Textarea';
+import { storage } from '../../firebase/firebase';
 
 const EditorBox = styled.div`
   display: block;
@@ -153,7 +154,34 @@ const Editor = ({
       onChangeContent(quill.root.innerHTML);
       // console.log(quill.root.innerHTML);
     });
+    quill.getModule('toolbar').addHandler('image', function() {
+      selectLocalImage();
+    });
   }, [onChangeContent]);
+
+  const selectLocalImage = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.click();
+    input.onchange = async () => {
+      // const fd = new FormData();
+      const file = input.files[0];
+      const _name = file.name;
+      // console.log(file);
+      const RandomNumber = Math.random()
+        .toString(36)
+        .substr(2, 11);
+      const storageRef = storage.ref();
+      await storageRef.child(`docs/${RandomNumber}/${_name}`).put(file);
+
+      const url = await storageRef
+        .child(`docs/${RandomNumber}/${_name}`)
+        .getDownloadURL();
+      // console.log(url);
+      const range = quillInstance.current.getSelection();
+      quillInstance.current.insertEmbed(range.index, 'image', `${url}`);
+    };
+  };
 
   return (
     <>
