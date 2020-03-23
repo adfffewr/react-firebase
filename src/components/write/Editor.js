@@ -10,6 +10,13 @@ import Select from '../common/Select';
 import Textarea from '../common/Textarea';
 import { storage } from '../../firebase/firebase';
 
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css';
+
+hljs.configure({
+  languages: ['javascript', 'css', 'html', 'xml ', 'typescript'],
+});
+
 const EditorBox = styled.div`
   display: block;
 `;
@@ -27,12 +34,12 @@ const InputBox = styled.div`
 const QuillWrapper = styled.div`
   display: block;
   margin-bottom: 15px;
-  max-height: 368px;
+  max-height: 1000px;
   .ql-editor {
-    min-height: 320px;
-    max-height: 320px;
+    min-height: 400px;
+    max-height: 400px;
     overflow: auto;
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.5;
   }
   .ql-toolbar.ql-snow {
@@ -108,6 +115,12 @@ const QuillWrapper = styled.div`
   .ql-snow .ql-editor pre.ql-syntax {
     background-color: rgb(1, 22, 39);
   }
+  @media screen and (min-width: 768px) {
+    .ql-editor {
+      min-height: 800px;
+      max-height: 800px;
+    }
+  }
 `;
 
 const Editor = ({
@@ -117,6 +130,7 @@ const Editor = ({
   onChangeUrl,
   onChangeDescription,
   onChangeContent,
+  content,
 }) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
@@ -131,10 +145,14 @@ const Editor = ({
       theme: 'snow', // or 'bubble , snow'
       placeholder: '내용을 작성하세요...',
       modules: {
-        syntax: true,
-        // syntax: {
-        //   highlight: text => hljs.highlightAuto(text).value
-        // },
+        // syntax: true,
+        syntax: {
+          highlight: text => hljs.highlightAuto(text).value,
+          // highlight(text) {
+          //   const result = hljs.highlightAuto(text);
+          //   return result.value;
+          // },
+        },
 
         // 더 많은 옵션
         // https://quilljs.com/docs/modules/toolbar/ 참고

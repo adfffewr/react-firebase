@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
+import Header from '../components/common/header';
+const PostContainer = lazy(() => import('../containers/PostContainer'));
 
-const Post = () => {
+const PostWrite = () => {
   return (
-    <>
-      <div>post</div>
-    </>
+    <Suspense fallback={<Header />}>
+      <Header />
+      <main>
+        <PostContainer />
+      </main>
+    </Suspense>
   );
 };
 
-export default Post;
+export default PostWrite;

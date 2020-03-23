@@ -7,7 +7,7 @@ import { firestore } from '../firebase/firebase';
 const PostWriteContainer = ({ history }) => {
   const [form, setForm] = useState({
     title: '',
-    category: '',
+    category: 'html',
     url: '',
     description: '',
     tags: [],
@@ -78,7 +78,7 @@ const PostWriteContainer = ({ history }) => {
 
     const modifiedAt = today;
     const { title, category, url, description, tags } = form;
-    // console.log(content);
+    console.log(content);
     // console.log(title, category, url, description, tags);
     const slug = `post/${category}/${url}`;
     const id = category + '_' + url;
@@ -119,6 +119,7 @@ const PostWriteContainer = ({ history }) => {
           onChangeUrl={onChangeUrl}
           onChangeDescription={onChangeDescription}
           onChangeContent={onChangeContent}
+          content={content}
         />
         <WriteBtnBox />
       </form>
