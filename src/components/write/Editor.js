@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-// import hljs from 'highlight.js/lib/highlight';
-// import 'highlight.js/styles/github.css';
 import styled from 'styled-components';
 import { palette } from '../GlobalStyles';
 import Input from '../common/Input';

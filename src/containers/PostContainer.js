@@ -5,6 +5,9 @@ import { palette } from '../components/GlobalStyles';
 import { firestore } from '../firebase/firebase';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
+import PostAction from '../components/post/PostAction';
+import { userStore } from '../store';
+import { useObserver } from 'mobx-react';
 
 hljs.configure({
   languages: ['javascript', 'css', 'html', 'xml ', 'typescript'],
@@ -122,14 +125,18 @@ const PostContainer = ({ match, history }) => {
     };
   }, [docRead]);
 
-  return (
+  return useObserver(() => (
     <>
       <Container>
+        {userStore.currentUser && userStore.currentUser.level === 0 && (
+          <PostAction />
+        )}
+
         <PostTitle>{metaRead.title}</PostTitle>
         <PostContent dangerouslySetInnerHTML={{ __html: docRead }} />
       </Container>
     </>
-  );
+  ));
 };
 
 export default withRouter(PostContainer);
